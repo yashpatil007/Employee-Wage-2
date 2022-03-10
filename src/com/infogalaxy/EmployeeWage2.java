@@ -3,16 +3,23 @@ package com.infogalaxy;
 import java.util.Random;
 
 public class EmployeeWage2 {
+    int working_day = 0;
+    int working_hrs = 0;
+    int empWage = 0;
+    int totalWage = 0;
+    Random random = new Random();
+
     public static void main(String[] args) {
-        System.out.println("Welcome massage for User Code by Yash");
-        int working_day = 0;
-        int working_hrs = 0;
-        Random random = new Random();
+        EmployeeWage2 E = new EmployeeWage2();
+        E.getemp();
+        E.showEmp();
+    }
+
+    void getemp() {
         //UC-3 Checking for Employee Calculation of Month
         while (working_hrs <= Constants.TOTAL_WORKING_HR && working_day < Constants.WORKING_DAY) {
-            int empWage = 0;
             working_day++;
-            System.out.println("Day=" +working_day);
+            System.out.println("Day=" + working_day);
             int empAttendance = random.nextInt() % 2;
             System.out.println(empAttendance);
             //UC-1 Checking for Employee Present or Absent
@@ -25,21 +32,28 @@ public class EmployeeWage2 {
                     empType = -empType;
                 }
                 //UC-2 Checking for Employee is on Part time or Full time
-                switch(empType) {
+                switch (empType) {
                     case Constants.IS_PART_TIME:
                         System.out.println("Employee is on Part time");
-                        empWage = Constants.WAGE_PER_HR * Constants.FULL_TIME_HR;
+                        totalWage = totalWage + (Constants.WAGE_PER_HR * Constants.FULL_TIME_HR);
                         working_hrs = working_hrs + Constants.PART_TIME_HR;
                         break;
                     case Constants.IS_FULL_TIME:
                         System.out.println("Employee is on Full Time");
-                        empWage = Constants.WAGE_PER_HR * Constants.FULL_TIME_HR;
+                        totalWage =  totalWage+(Constants.WAGE_PER_HR * Constants.FULL_TIME_HR);
                         working_hrs = working_hrs + Constants.FULL_TIME_HR;
                         break;
                 }
-                }
-                System.out.println("Total Wage=" + empWage);
-                System.out.println("Total Working Hours=" + working_hrs);
+
+            }
             }
         }
-    }
+        void showEmp(){
+            System.out.println("Wage=" + empWage);
+            System.out.println("Total Wage="+totalWage);
+            System.out.println("Working Day=" + working_day);
+            System.out.println("Total Working Hours=" + working_hrs);
+        }
+        }
+
+
